@@ -1,25 +1,28 @@
 package br.unitins.locadora.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Carro extends DefaultEntity implements Serializable {
+public class Carro extends DefaultEntity {
 	
-	private static final long serialVersionUID = 2771087309688789669L;
-	
-	@Column(length = 50)
-	String marca;
-	@Column(length = 50)
 	String nome;
-	@Column(length = 50)
 	String cor;
-	@Column(length = 50)
 	String chassi;
-	@Column(length = 50)
 	String placa;
+	String obs;
+	
+	@ManyToOne
+	private Fabricante fabricante;
+	private Completo completo;
+	
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
 
 	public String getNome() {
 		return nome;
@@ -27,14 +30,6 @@ public class Carro extends DefaultEntity implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
 	}
 
 	public String getCor() {
@@ -59,6 +54,22 @@ public class Carro extends DefaultEntity implements Serializable {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
+
+	public Completo getCompleto() {
+		return completo;
+	}
+
+	public void setCompleto(Completo completo) {
+		this.completo = completo;
 	}
 
 }

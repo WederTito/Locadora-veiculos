@@ -13,11 +13,11 @@
 			<p:panel header="Cadastro de Carro" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Marca: " />
+						<p:outputLabel value="Modelo: " />
 						<h:panelGroup>
 							<div class="p-col-12 p-md-4">
 								<div class="ui-inputgroup">
-									<p:inputText value="#{carroController.entity.marca}" />
+									<p:inputText value="#{carroController.entity.nome}" />
 									<p:commandButton icon="pi pi-search"
 										styleClass="ui-button-warning"
 										actionListener="#{carroController.abrirCarroListing}">
@@ -28,10 +28,25 @@
 								</div>
 							</div>
 						</h:panelGroup>
-
-						<p:outputLabel value="Modelo: " />
-						<p:inputText value="#{carroController.entity.nome}" />
-
+						
+						
+						<p:outputLabel value="Fabricante: " />
+						<h:panelGroup>
+						    <div class="p-col-12 p-md-4">
+				                <div class="ui-inputgroup">
+				                    <p:inputText value="#{carroController.entity.fabricante.nome}" />
+				                    <p:commandButton icon="pi pi-search" 
+				                    	styleClass="ui-button-warning"
+				                    	actionListener="#{carroController.abrirFabricanteListing}">
+				                    	<p:ajax 
+				                    		event="dialogReturn" 
+				                    		listener="#{cidadeController.obterFabricanteListing}" 
+				                    		update="@form"/>
+				                    </p:commandButton>
+				                </div>
+				            </div>
+						</h:panelGroup>
+						
 						<p:outputLabel value="Cor: " />
 						<p:inputText value="#{carroController.entity.cor}" />
 
@@ -40,7 +55,16 @@
 						
 						<p:outputLabel value="Placa: " />
 						<p:inputText value="#{carroController.entity.placa}" />
-
+						
+						<h:outputLabel value="Carro Completo? " />
+						<h:selectOneRadio value="#{carroController.entity.completo}">
+							<f:selectItems value="#{carroController.listaCompleto}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneRadio>
+						
+						<p:outputLabel value="Observações: " />
+						<p:inputText value="#{carroController.entity.obs}" />
+						
 					</h:panelGrid>
 				</div>
 				<f:facet name="footer">
