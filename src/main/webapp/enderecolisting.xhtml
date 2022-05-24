@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Listagem de Endereco</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Pesquisa de Endereco">
+			<div class="p-grid ui-fluid">
+	            <div class="p-col-12 p-md-4">
+	                <div class="ui-inputgroup">
+	                    <p:inputText 
+	                    	id="itNomePesquisa"
+	                    	value="#{enderecoListing.filtro}"
+	                    	placeholder="Informe um nome ..."/>
+	                    <p:commandButton 
+	                    	value="Pesquisar"
+	                    	actionListener="#{enderecoListing.pesquisar}"
+	                    	process="@this itNomePesquisa"
+	                    	update="dataTable"/>
+	                </div>
+	            </div>
+	        </div>
+			<p:dataTable id="dataTable" value="#{enderecoListing.list}" var="obj">
+				<p:column headerText="Rua">
+					<p:outputLabel value="#{obj.nome}"/>
+				</p:column>
+				<p:column headerText="Cep">
+					<p:outputLabel value="#{obj.cep}"/>
+				</p:column>
+				<p:column headerText="Bairro">
+					<p:outputLabel value="#{obj.bairro}"/>
+				</p:column>
+				<p:column headerText="Numero">
+					<p:outputLabel value="#{obj.numero}"/>
+				</p:column>
+				<p:column headerText="Complemento">
+					<p:outputLabel value="#{obj.complemento}"/>
+				</p:column>
+				<p:column headerText="Ação">
+					<p:commandButton value="Selecionar" 
+						actionListener="#{enderecoListing.select(obj.id)}"
+						process="@this"
+						update="@form"/>
+				</p:column> 
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
