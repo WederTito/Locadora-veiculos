@@ -2,6 +2,7 @@ package br.unitins.locadora.controller;
 
 import br.unitins.locadora.application.RepositoryException;
 import br.unitins.locadora.application.Util;
+import br.unitins.locadora.application.VersionException;
 import br.unitins.locadora.model.DefaultEntity;
 import br.unitins.locadora.repository.Repository;
 
@@ -18,26 +19,53 @@ public abstract class Controller <T extends DefaultEntity> {
 
 	public void incluir() {
 		try {
-			getRepository().save(getEntity());
+			limparRelacionamentosNaoObrigatorios();
+			setEntity(getRepository().save(getEntity()));
 			Util.addInfoMessage("Inclusão realizada com sucesso.");
 			limpar();
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
-		}
-	}
-
-	public void alterar() {
-		try {
-			getRepository().save(getEntity());
-			Util.addInfoMessage("Alteração realizada com sucesso.");
-			limpar();
-		} catch (RepositoryException e) {
+		} catch (VersionException e) {
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
 		}
 	}
 	
+	public void salvarSemLimpar() {
+		try {
+			limparRelacionamentosNaoObrigatorios();
+			setEntity(getRepository().save(getEntity()));
+			Util.addInfoMessage("Salvo com sucesso.");
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		} catch (VersionException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		}
+	}
+	
+	protected void limparRelacionamentosNaoObrigatorios() {
+		
+	}
+
+	public void alterar() {
+		try {
+			limparRelacionamentosNaoObrigatorios();
+			setEntity(getRepository().save(getEntity()));
+			Util.addInfoMessage("Alteração realizada com sucesso.");
+			limpar();
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		} catch (VersionException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		}
+	}
+
+
 	public void excluir() {
 		try {
 			getRepository().remove(getEntity());
@@ -63,9 +91,6 @@ public abstract class Controller <T extends DefaultEntity> {
 	public void setEntity(T entity) {
 		this.entity = entity;
 	}
+	
 
-	protected void limparRelacionamentosNaoObrigatorios() {
-		// TODO Auto-generated method stub
-		
-	}
 }

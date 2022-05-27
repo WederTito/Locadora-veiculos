@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Esqueceu senha?</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="growl" showDetail="true" />
+		<center>
+			<p:panel header="Esqueceu senha?" style="width:500px;">
+				<div class="p-grid ui-fluid">
+					<h:panelGrid columns="1">
+
+						<h:messages infoStyle="color:green" errorStyle="color:red" />
+						<h1>Informe o email:</h1>
+						<h:inputText value="#{esqueceuSenhaController.email}" />
+						
+					</h:panelGrid>
+				</div>
+
+				<f:facet name="footer">
+					<center>
+						<h:commandButton value="Enviar"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{esqueceuSenhaController.enviarEmail}" />
+					</center>
+				</f:facet>
+			</p:panel>
+		</center>
+	</h:form>
+
+</h:body>
+</html>

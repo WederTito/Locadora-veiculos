@@ -16,6 +16,7 @@
 		<class>br.unitins.locadora.model.Fabricante</class>
 		<class>br.unitins.locadora.model.PessoaFisica</class>
 		<class>br.unitins.locadora.model.PessoaJuridica</class>
+		<class>br.unitins.locadora.model.EsqueceuSenha</class>
 
 
 		<properties>
