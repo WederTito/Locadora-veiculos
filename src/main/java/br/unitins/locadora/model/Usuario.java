@@ -27,7 +27,7 @@ public class Usuario extends DefaultEntity implements Serializable {
 	private Funcao funcao;
 
 	@Column(length = 80)
-	private String email;
+	private String login;
 
 	@Column(length = 60)
 	private String senha;
@@ -74,12 +74,12 @@ public class Usuario extends DefaultEntity implements Serializable {
 		this.funcao = funcao;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
