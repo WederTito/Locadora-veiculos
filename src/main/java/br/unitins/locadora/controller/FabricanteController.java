@@ -6,7 +6,10 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import br.unitins.locadora.controller.listing.CategoriaListing;
 import br.unitins.locadora.controller.listing.FabricanteListing;
+import br.unitins.locadora.model.Categoria;
+import br.unitins.locadora.model.Estado;
 import br.unitins.locadora.model.Fabricante;
 import br.unitins.locadora.repository.FabricanteRepository;
 
@@ -36,5 +39,14 @@ public class FabricanteController extends Controller<Fabricante> implements Seri
 	public void obterFabricanteListing(SelectEvent<Fabricante> event) {
 		setEntity(event.getObject());
 	}
+	
+	//public void abrirCategoriaListing() {
+	//	CategoriaListing listing = new CategoriaListing();
+		//listing.open();
+	//}
+	
+	//public void obterCategoriaListing(SelectEvent<Categoria> event) {
+		//getEntity().setCategoria(event.getObject());
+	//}
 
 }

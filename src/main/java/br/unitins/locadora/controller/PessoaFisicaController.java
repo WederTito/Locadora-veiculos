@@ -7,9 +7,9 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.unitins.locadora.controller.listing.CidadeListing;
+import br.unitins.locadora.controller.listing.EnderecoListing;
 import br.unitins.locadora.controller.listing.PessoaFisicaListing;
-import br.unitins.locadora.model.Cidade;
+import br.unitins.locadora.model.Endereco;
 import br.unitins.locadora.model.PessoaFisica;
 import br.unitins.locadora.repository.PessoaFisicaRepository;
 
@@ -27,15 +27,15 @@ public class PessoaFisicaController extends Controller<PessoaFisica> implements 
 	
 	@Override
 	protected void limparRelacionamentosNaoObrigatorios() {
-		if (getEntity().getCidade().getId() == null)
-			getEntity().setCidade(null);
+		if (getEntity().getEndereco().getId() == null)
+			getEntity().setEndereco(null);
 	}
 	
 	@Override
 	public PessoaFisica getEntity() {
 		if (entity == null) {
 			entity = new PessoaFisica();
-			entity.setCidade(new Cidade());
+			entity.setEndereco(new Endereco());
 		}
 		
 		return entity;
@@ -50,14 +50,12 @@ public class PessoaFisicaController extends Controller<PessoaFisica> implements 
 		setEntity(event.getObject());
 	}
 	
-	public void abrirCidadeListing() {
-		CidadeListing listing = new CidadeListing();
+	public void abrirEnderecoListing() {
+		EnderecoListing listing = new EnderecoListing();
 		listing.open();
 	}
 	
-	public void obterCidadeListing(SelectEvent<Cidade> event) {
-		getEntity().setCidade(event.getObject());
+	public void obterEnderecoListing(SelectEvent<Endereco> event) {
+		getEntity().setEndereco(event.getObject());
 	}
-	
-
 }

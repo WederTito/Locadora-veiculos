@@ -1,13 +1,15 @@
 package br.unitins.locadora.model;
 
-public enum Completo {
-	SIM (1, "Sim."),
-	NAO (2, "Não, tem observações.");
+public enum Motor {
+	ALCOOL (1, "Alcool."),
+	GASOLINA (2, "Gasolina."),
+	FLEX (3, "Flex."),
+	DIESEL (4, "Diesel.");
 	
 	private int value;
 	private String label;
 	
-	Completo (int value, String label){
+	Motor (int value, String label){
 		this.value = value;
 		this.label = label;
 	}

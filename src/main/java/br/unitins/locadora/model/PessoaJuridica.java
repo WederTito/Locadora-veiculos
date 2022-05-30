@@ -7,11 +7,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class PessoaJuridica extends Pessoa{
 	
-	private String cnpj;
+private String cnpj;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cidade")
-	private Cidade cidade;
+	@JoinColumn(name = "id_endereco")
+	private Endereco endereco;
 	
 
 	public String getCnpj() {
@@ -22,13 +22,12 @@ public class PessoaJuridica extends Pessoa{
 		this.cnpj = cnpj;
 	}
 
-	public Cidade getCidade() {
-		return cidade;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
-	
 	
 }

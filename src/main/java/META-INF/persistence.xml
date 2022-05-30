@@ -11,6 +11,7 @@
 		<class>br.unitins.locadora.model.Usuario</class>
 		<class>br.unitins.locadora.model.Cliente</class>
 		<class>br.unitins.locadora.model.Carro</class>
+		<class>br.unitins.locadora.model.Categoria</class>
 		<class>br.unitins.locadora.model.Endereco</class>
 		<class>br.unitins.locadora.model.Pessoa</class>
 		<class>br.unitins.locadora.model.Fabricante</class>

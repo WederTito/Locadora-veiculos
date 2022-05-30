@@ -12,6 +12,7 @@ import br.unitins.locadora.repository.CarroRepository;
 import br.unitins.locadora.model.Carro;
 import br.unitins.locadora.model.Completo;
 import br.unitins.locadora.model.Fabricante;
+import br.unitins.locadora.model.Motor;
 import br.unitins.locadora.model.Sexo;
 
 @Named
@@ -35,6 +36,10 @@ public class CarroController extends Controller<Carro> implements Serializable {
 
 	public Completo[] getListaCompleto() {
 		return Completo.values();
+	}
+	
+	public Motor[] getListaMotor() {
+		return Motor.values();
 	}
 	
 	public void abrirCarroListing() {

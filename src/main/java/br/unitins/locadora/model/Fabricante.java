@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 public class Fabricante extends DefaultEntity {
 	private String nome;
 	private String sigla;
+	//private Categoria categoria;
 
 	public String getNome() {
 		return nome;
@@ -22,4 +23,13 @@ public class Fabricante extends DefaultEntity {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
+
+	//public Categoria getCategoria() {
+		//return categoria;
+	//}
+
+	//public void setCategoria(Categoria categoria) {
+		//this.categoria = categoria;
+	//}
+	
 }

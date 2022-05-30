@@ -15,6 +15,7 @@ public class Carro extends DefaultEntity {
 	@ManyToOne
 	private Fabricante fabricante;
 	private Completo completo;
+	private Motor motor;
 	
 	public Fabricante getFabricante() {
 		return fabricante;
@@ -70,6 +71,14 @@ public class Carro extends DefaultEntity {
 
 	public void setCompleto(Completo completo) {
 		this.completo = completo;
+	}
+
+	public Motor getMotor() {
+		return motor;
+	}
+
+	public void setMotor(Motor motor) {
+		this.motor = motor;
 	}
 
 }

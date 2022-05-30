@@ -21,9 +21,6 @@ public class Usuario extends DefaultEntity implements Serializable {
 	@Column(length = 100)
 	private String nome;
 
-	@Column(length = 14)
-	private String cpf;
-
 	private Funcao funcao;
 
 	@Column(length = 80)
@@ -56,14 +53,6 @@ public class Usuario extends DefaultEntity implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public Funcao getFuncao() {

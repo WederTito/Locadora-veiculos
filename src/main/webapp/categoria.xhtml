@@ -7,31 +7,31 @@
 	
 <ui:composition template="template.xhtml">
 <ui:define name="conteudo">
-	
+
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Telefone" style="width:500px;">
+			<p:panel header="Cadastro de Categoria" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Codigo de Area: " />
+						<p:outputLabel value="Nome: " />
 						<h:panelGroup>
 							<div class="p-col-12 p-md-4">
 								<div class="ui-inputgroup">
-									<p:inputText value="#{telefoneController.entity.nome}" />
+									<p:inputText value="#{categoriaController.entity.nome}" />
 									<p:commandButton icon="pi pi-search"
 										styleClass="ui-button-warning"
-										actionListener="#{telefoneController.abrirTelefoneListing}">
+										actionListener="#{categoriaController.abrirCategoriaListing}">
 										<p:ajax event="dialogReturn"
-											listener="#{telefoneController.obterTelefoneListing}"
+											listener="#{categoriaController.obterCategoriaListing}"
 											update="@form" />
 									</p:commandButton>
 								</div>
 							</div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Numero: " />
-						<p:inputText value="#{telefoneController.entity.numero}" />
+						<p:outputLabel value="Valor: " />
+						<p:inputText value="#{categoriaController.entity.valor}" />
 
 					</h:panelGrid>
 				</div>
@@ -39,23 +39,23 @@
 					<center>
 						<p:commandButton value="Incluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.incluir}" update="@form"
-							process="@form" disabled="#{telefoneController.entity.id != null}" />
+							actionListener="#{categoriaController.incluir}" update="@form"
+							process="@form" disabled="#{categoriaController.entity.id != null}" />
 						<p:commandButton value="Alterar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.alterar}" update="@form"
-							process="@form" disabled="#{telefoneController.entity.id == null}" />
+							actionListener="#{categoriaController.alterar}" update="@form"
+							process="@form" disabled="#{categoriaController.entity.id == null}" />
 						<p:commandButton value="Excluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.excluir}" process="@this"
-							update="@form" disabled="#{telefoneController.entity.id == null}">
+							actionListener="#{categoriaController.excluir}" process="@this"
+							update="@form" disabled="#{categoriaController.entity.id == null}">
 							<p:confirm header="Confirmação"
 								message="Deseja realmente excluir?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 						<p:commandButton value="Limpar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.limpar}" update="@form"
+							actionListener="#{categoriaController.limpar}" update="@form"
 							process="@this" />
 					</center>
 				</f:facet>

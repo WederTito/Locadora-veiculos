@@ -7,9 +7,9 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.unitins.locadora.controller.listing.CidadeListing;
+import br.unitins.locadora.controller.listing.EnderecoListing;
 import br.unitins.locadora.controller.listing.PessoaJuridicaListing;
-import br.unitins.locadora.model.Cidade;
+import br.unitins.locadora.model.Endereco;
 import br.unitins.locadora.model.PessoaJuridica;
 import br.unitins.locadora.repository.PessoaJuridicaRepository;
 
@@ -26,15 +26,15 @@ public class PessoaJuridicaController extends Controller<PessoaJuridica> impleme
 	
 	@Override
 	protected void limparRelacionamentosNaoObrigatorios() {
-		if (getEntity().getCidade().getId() == null)
-			getEntity().setCidade(null);
+		if (getEntity().getEndereco().getId() == null)
+			getEntity().setEndereco(null);
 	}
 	
 	@Override
 	public PessoaJuridica getEntity() {
 		if (entity == null) {
 			entity = new PessoaJuridica();
-			entity.setCidade(new Cidade());
+			entity.setEndereco(new Endereco());
 		}
 		
 		return entity;
@@ -49,14 +49,12 @@ public class PessoaJuridicaController extends Controller<PessoaJuridica> impleme
 		setEntity(event.getObject());
 	}
 	
-	public void abrirCidadeListing() {
-		CidadeListing listing = new CidadeListing();
+	public void abrirEnderecoListing() {
+		EnderecoListing listing = new EnderecoListing();
 		listing.open();
 	}
 	
-	public void obterCidadeListing(SelectEvent<Cidade> event) {
-		getEntity().setCidade(event.getObject());
+	public void obterEnderecoListing(SelectEvent<Endereco> event) {
+		getEntity().setEndereco(event.getObject());
 	}
-	
-
 }

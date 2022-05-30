@@ -2,11 +2,12 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Cadastro de Carro</title>
-</h:head>
-<h:body>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+<ui:composition template="template.xhtml">
+<ui:define name="conteudo">
+
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
@@ -52,6 +53,12 @@
 
 						<p:outputLabel value="Chassi: " />
 						<p:inputText value="#{carroController.entity.chassi}" />
+						
+						<h:outputLabel value="Tipo do Motor: " />
+						<h:selectOneRadio value="#{carroController.entity.motor}">
+							<f:selectItems value="#{carroController.listaMotor}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneRadio>
 						
 						<p:outputLabel value="Placa: " />
 						<p:inputText value="#{carroController.entity.placa}" />
@@ -113,5 +120,6 @@
 		<p:commandButton value="Sim" type="button"
 			styleClass="ui-confirmdialog-yes" />
 	</p:confirmDialog>
-</h:body>
+</ui:define>
+</ui:composition>
 </html>

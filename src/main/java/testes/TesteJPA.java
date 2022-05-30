@@ -17,7 +17,6 @@ public class TesteJPA {
 		usuario.setId(1);
 		usuario.setNome("Tito");
 		usuario.setSenha("2323");
-		usuario.setCpf("23232323233");
 		
 		em.getTransaction().begin();
 		usuario = em.merge(usuario);
