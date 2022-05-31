@@ -16,31 +16,27 @@
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Nome: " />
 						<h:panelGroup>
-							<div class="p-col-12 p-md-4">
-								<div class="ui-inputgroup">
-									<p:inputText value="#{clienteController.entity.nome}" />
-									<p:commandButton icon="pi pi-search"
-										styleClass="ui-button-warning"
-										actionListener="#{clienteController.abrirClienteListing}">
-										<p:ajax event="dialogReturn"
-											listener="#{clienteController.obterClienteListing}"
-											update="@form" />
-									</p:commandButton>
-								</div>
-							</div>
+						    <div class="p-col-12 p-md-4">
+				                <div class="ui-inputgroup">
+				                    <p:inputText value="#{clienteController.entity.pessoaFisica.nome}" />
+				                    <p:commandButton icon="pi pi-search" 
+				                    	styleClass="ui-button-warning"
+				                    	actionListener="#{clienteController.abrirPessoaFisicaListing}">
+				                    	<p:ajax 
+				                    		event="dialogReturn" 
+				                    		listener="#{clienteController.obterPessoaFisicaListing}" 
+				                    		update="@form"/>
+				                    </p:commandButton>
+				                </div>
+				            </div>
 						</h:panelGroup>
 
-						<p:outputLabel value="CPF: " />
-						<p:inputText value="#{clienteController.entity.cpf}" />
 
 						<h:outputLabel value="Sexo: " />
 						<h:selectOneRadio value="#{clienteController.entity.sexo}">
 							<f:selectItems value="#{clienteController.listaSexo}" var="obj"
 								itemLabel="#{obj.label}" />
 						</h:selectOneRadio>
-
-						<p:outputLabel value="Cnh: " />
-						<p:inputText value="#{clienteController.entity.cnh}" />
 
 						<p:outputLabel value="E-mail: " />
 						<p:inputText value="#{clienteController.entity.email}" />

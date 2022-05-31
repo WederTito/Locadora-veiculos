@@ -1,10 +1,14 @@
 package br.unitins.locadora.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Carro extends DefaultEntity {
+public class Carro extends DefaultEntity implements Serializable {
+	
+	private static final long serialVersionUID = -7157398933971531440L;
 	
 	String nome;
 	String cor;
