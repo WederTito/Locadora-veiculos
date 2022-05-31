@@ -9,7 +9,7 @@ import br.unitins.locadora.model.Estado;
 
 public class EstadoRepository extends Repository<Estado>{
 	
-	public List<Estado> findByNome(String nome) throws RepositoryException {
+	public List<Estado> findByNome(String nome, Integer maxResults) throws RepositoryException {
 		try { 
 			StringBuffer jpql = new StringBuffer();
 			jpql.append("SELECT ");
@@ -22,10 +22,17 @@ public class EstadoRepository extends Repository<Estado>{
 			Query query = getEntityManager().createQuery(jpql.toString());
 			query.setParameter("nome", "%" + nome + "%");
 			
+			if (maxResults != null)
+				query.setMaxResults(maxResults);
+			
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}
+	}
+	
+	public List<Estado> findByNome(String nome) throws RepositoryException {
+		return findByNome(nome, null);
 	}
 }
