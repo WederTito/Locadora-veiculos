@@ -1,4 +1,5 @@
 package br.unitins.locadora.controller;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -22,19 +23,28 @@ import br.unitins.locadora.model.Funcao;
 
 @Named
 @ViewScoped
-public class UsuarioController extends Controller<Usuario> implements Serializable{
+public class UsuarioController extends Controller<Usuario> implements Serializable {
 
 	private static final long serialVersionUID = -3236682773291811713L;
 	private InputStream fotoInputStream = null;
-	
+	private String confirmarSenha;
+
+	private boolean verificaSenha() {
+		if (getEntity().getSenha().equals(getConfirmarSenha())) {
+			return true;
+		}
+		Util.addErrorMessage("As senhas estão diferentes.");
+		return false;
+	}
+
 	public Sexo[] getListaSexo() {
 		return Sexo.values();
 	}
-	
+
 	public Funcao[] getListaFuncao() {
 		return Funcao.values();
 	}
-	
+
 	public UsuarioController() {
 		super(new UsuarioRepository());
 	}
@@ -59,38 +69,43 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 		}
 
 	}
-	
+
 	@Override
 	public void incluir() {
+		if (!verificaSenha()) {
+			return;
+		}
 		super.salvarSemLimpar();
-			
+
 		// caso exista uma imagem
 		if (getFotoInputStream() != null) {
 			// salvando a imagem
-			if (! Util.saveImageUsuario(getFotoInputStream(), "png", getEntity().getId())) {
+			if (!Util.saveImageUsuario(getFotoInputStream(), "png", getEntity().getId())) {
 				Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 				return;
 			}
 		}
 		limpar();
 	}
-	
+
 	@Override
 	public void alterar() {
+		if (!verificaSenha()) {
+			return;
+		}
 		super.salvarSemLimpar();
-			
+
 		// caso exista uma imagem
 		if (getFotoInputStream() != null) {
 			// salvando a imagem
-			if (! Util.saveImageUsuario(getFotoInputStream(), "png", getEntity().getId())) {
+			if (!Util.saveImageUsuario(getFotoInputStream(), "png", getEntity().getId())) {
 				Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 				return;
 			}
 		}
 		limpar();
 	}
-	
-	
+
 	public InputStream getFotoInputStream() {
 		return fotoInputStream;
 	}
@@ -107,12 +122,12 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 		}
 		return entity;
 	}
-	
+
 	public void abrirPessoaFisicaListing() {
 		PessoaFisicaListing listing = new PessoaFisicaListing();
 		listing.open();
 	}
-	
+
 	public void obterPessoaFisicaListing(SelectEvent<PessoaFisica> event) {
 		PessoaFisica pf = event.getObject();
 		UsuarioRepository repo = new UsuarioRepository();
@@ -122,11 +137,17 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
-		if (usuario != null) 
+		if (usuario != null)
 			setEntity(usuario);
 		else
-			getEntity().setPessoaFisica(pf);	
+			getEntity().setPessoaFisica(pf);
 	}
-	
 
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
 }

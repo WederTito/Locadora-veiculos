@@ -3,21 +3,19 @@ package br.unitins.locadora.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class EsqueceuSenha extends DefaultEntity {
+public class RecuperarSenha extends DefaultEntity {
 		
+	private String codigo;
+	private LocalDateTime dataLimite;
+	private Boolean utilizado;
+
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	
-	private String codigo;
-	private LocalDateTime dataHoraLimite;
-	private Boolean utilizado;
 
 	public String getCodigo() {
 		return codigo;
@@ -27,20 +25,12 @@ public class EsqueceuSenha extends DefaultEntity {
 		this.codigo = codigo;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public LocalDateTime getDataLimite() {
+		return dataLimite;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public LocalDateTime getDataHoraLimite() {
-		return dataHoraLimite;
-	}
-
-	public void setDataHoraLimite(LocalDateTime dataHoraLimite) {
-		this.dataHoraLimite = dataHoraLimite;
+	public void setDataLimite(LocalDateTime dataLimite) {
+		this.dataLimite = dataLimite;
 	}
 
 	public Boolean getUtilizado() {
@@ -49,6 +39,14 @@ public class EsqueceuSenha extends DefaultEntity {
 
 	public void setUtilizado(Boolean utilizado) {
 		this.utilizado = utilizado;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

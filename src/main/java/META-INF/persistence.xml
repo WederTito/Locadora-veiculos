@@ -18,6 +18,7 @@
 		<class>br.unitins.locadora.model.PessoaFisica</class>
 		<class>br.unitins.locadora.model.PessoaJuridica</class>
 		<class>br.unitins.locadora.model.EsqueceuSenha</class>
+		<class>br.unitins.locadora.model.RecuperarSenha</class>
 
 
 		<properties>

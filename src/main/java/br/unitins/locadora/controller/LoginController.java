@@ -23,7 +23,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		if (usuarioLogado != null) {
-			Util.redirect("/faces/usuario.xhtml");
+			Util.redirect("usuario.xhtml");
 		}
 		Util.addErrorMessage("Login ou senha inválido.");
 

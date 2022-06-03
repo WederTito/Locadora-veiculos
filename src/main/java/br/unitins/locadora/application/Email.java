@@ -1,8 +1,6 @@
 package br.unitins.locadora.application;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import jakarta.mail.Message;
@@ -22,7 +20,7 @@ public class Email {
 	private String mensagem;
 	
 	public static void main(String[] args) {
-		Email email = new Email("wedertito8@gmail.com", "Teste 2", "Novo teste");
+		Email email = new Email("wedertitotopicos2@gmail.com", "Teste 2", "Novo teste");
 		System.out.println(email.enviar());
 	}
 	

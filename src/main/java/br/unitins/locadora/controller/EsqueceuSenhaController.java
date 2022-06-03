@@ -8,21 +8,23 @@ import java.util.Random;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.locadora.model.EsqueceuSenha;
+import br.unitins.locadora.repository.EsqueceuSenhaRepository;
 import br.unitins.locadora.application.Email;
 import br.unitins.locadora.application.RepositoryException;
 import br.unitins.locadora.application.Util;
 import br.unitins.locadora.application.VersionException;
-import br.unitins.locadora.model.EsqueceuSenha;
 import br.unitins.locadora.model.Usuario;
-import br.unitins.locadora.repository.EsqueceuSenhaRepository;
 import br.unitins.locadora.repository.UsuarioRepository;
+import br.unitins.locadora.model.RecuperarSenha;
+import br.unitins.locadora.repository.RecuperarSenhaRepository;
 
 @Named
 @ViewScoped
 public class EsqueceuSenhaController implements Serializable {
 
-	private static final long serialVersionUID = -7442832323372767310L;
-	private String email;
+	private static final long serialVersionUID = 5296132330124509259L;
+private String email;
 	
 
 	public void enviarEmail() {
@@ -66,7 +68,7 @@ public class EsqueceuSenhaController implements Serializable {
 		// 4 - enviar email
 		Email email = new Email(usuario.getPessoaFisica().getEmail(), 
 				"Esqueceu a senha", 
-				"Segue o código de recuperar a senha: "+codigo);
+				"Segue o código para a recuperação da senha da sua conta: "+codigo);
 		if (!email.enviar()) {
 			Util.addErrorMessage("Problema ao enviar o email.");
 		} else
@@ -81,5 +83,4 @@ public class EsqueceuSenhaController implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }

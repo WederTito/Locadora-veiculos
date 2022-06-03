@@ -98,4 +98,9 @@ public class UsuarioRepository extends Repository<Usuario>{
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}		
 	}
+
+	public void adicionar(Usuario usu) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,5 +1,6 @@
 package br.unitins.locadora.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -10,6 +11,8 @@ public abstract class Pessoa extends DefaultEntity {
 
 	private String nome;
 	private String cnh;
+	
+	@Column(unique = true)
 	private String email;
 	
 	public String getNome() {
