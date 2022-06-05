@@ -4,6 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import br.unitins.locadora.application.RepositoryException;
+import br.unitins.locadora.application.Session;
 import br.unitins.locadora.application.Util;
 import br.unitins.locadora.model.Usuario;
 import br.unitins.locadora.repository.UsuarioRepository;
@@ -11,9 +12,9 @@ import br.unitins.locadora.repository.UsuarioRepository;
 @Named
 @RequestScoped
 public class LoginController {
-	
-	private Usuario usuario;
 
+	private Usuario usuario;
+	
 	public void entrar() {
 		UsuarioRepository repo = new UsuarioRepository();
 		Usuario usuarioLogado = null;
@@ -23,12 +24,19 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		if (usuarioLogado != null) {
+			//Adicionar na sessao o objeto usuarioLogado
+//			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+//			context.getSessionMap().put("usuarioLogado", usuarioLogado);
+			Session.getInstance().set("usuarioLogado", usuarioLogado);
+			
+			// redirecionando para o template
 			Util.redirect("usuario.xhtml");
+			
 		}
 		Util.addErrorMessage("Login ou senha inválido.");
-
+		
 	}
-
+	
 	public void limpar() {
 		usuario = null;
 	}
@@ -42,4 +50,5 @@ public class LoginController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
 }

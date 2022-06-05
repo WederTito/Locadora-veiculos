@@ -19,6 +19,7 @@
 		<class>br.unitins.locadora.model.PessoaJuridica</class>
 		<class>br.unitins.locadora.model.EsqueceuSenha</class>
 		<class>br.unitins.locadora.model.RecuperarSenha</class>
+		<class>br.unitins.locadora.converter.jpa.FuncaoConverter</class>
 
 
 		<properties>
