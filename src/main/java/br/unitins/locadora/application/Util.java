@@ -15,7 +15,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import br.unitins.locadora.model.Usuario;
 import br.unitins.locadora.servlet.ImgCarroServlet;
 import br.unitins.locadora.servlet.ImgUsuarioServlet;
-import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 
 public class Util {
 
@@ -34,7 +33,6 @@ public class Util {
 		}
 	}
 	
-//vvvvvvvvvvvvvvvvv
 	public static String hash(String valor) {
 		return DigestUtils.sha256Hex(valor);
 	}
@@ -42,7 +40,6 @@ public class Util {
 	public static String hash(Usuario usuario) {
 		return DigestUtils.sha256Hex(usuario.getLogin() + usuario.getSenha());
 	}
-// ^^^^^^^^^^^^^^
 	
 	private static void addMessage(String msg, Severity severity) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));

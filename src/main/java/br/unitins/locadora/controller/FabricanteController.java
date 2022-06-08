@@ -26,9 +26,9 @@ public class FabricanteController extends Controller<Fabricante> implements Seri
 	
 	@Override
 	public Fabricante getEntity() {
-		if (entity == null)
+		if (entity == null) {
 			entity = new Fabricante();
-		return entity;
+		}return entity;
 	}
 	
 	public void abrirFabricanteListing() {
@@ -40,13 +40,13 @@ public class FabricanteController extends Controller<Fabricante> implements Seri
 		setEntity(event.getObject());
 	}
 	
-	//public void abrirCategoriaListing() {
-	//	CategoriaListing listing = new CategoriaListing();
-		//listing.open();
-	//}
+	/*public void abrirCategoriaListing() {
+		CategoriaListing listing = new CategoriaListing();
+	listing.open();
+	}
 	
-	//public void obterCategoriaListing(SelectEvent<Categoria> event) {
-		//getEntity().setCategoria(event.getObject());
-	//}
+	public void obterCategoriaListing(SelectEvent<Categoria> event) {
+		getEntity().setCategoria(event.getObject());
+	}*/
 
 }

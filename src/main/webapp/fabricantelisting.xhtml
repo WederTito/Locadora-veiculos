@@ -31,6 +31,12 @@
 				<p:column headerText="Sigla">
 					<p:outputLabel value="#{obj.sigla}"/>
 				</p:column>
+				<p:column headerText="Categoria">
+					<p:outputLabel value="#{obj.categoria}"/>
+				</p:column>
+				<p:column headerText="Valor">
+					<p:outputLabel value="#{obj.valor}"/>
+				</p:column>
 				<p:column headerText="Ação">
 					<p:commandButton value="Selecionar" 
 						actionListener="#{fabricanteListing.select(obj.id)}"
