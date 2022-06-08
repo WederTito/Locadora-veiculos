@@ -28,7 +28,19 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 	private static final long serialVersionUID = -3236682773291811713L;
 	private InputStream fotoInputStream = null;
 	private String confirmarSenha;
+	private Usuario usuario;
 
+	public Usuario getUsuario() {
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	private boolean verificaSenha() {
 		if (getEntity().getSenha().equals(getConfirmarSenha())) {
 			return true;
@@ -72,9 +84,11 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 
 	@Override
 	public void incluir() {
+		
 		if (!verificaSenha()) {
 			return;
 		}
+		getEntity().setSenha(Util.hash(getEntity().getSenha()));
 		super.salvarSemLimpar();
 
 		// caso exista uma imagem
@@ -90,9 +104,11 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 
 	@Override
 	public void alterar() {
+		
 		if (!verificaSenha()) {
 			return;
 		}
+		getEntity().setSenha(Util.hash(getEntity().getSenha()));
 		super.salvarSemLimpar();
 
 		// caso exista uma imagem

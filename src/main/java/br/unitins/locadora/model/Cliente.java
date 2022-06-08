@@ -21,11 +21,7 @@ public class Cliente extends DefaultEntity implements Serializable{
 	@Column(length = 100)
 	private String nome;
 	
-	@Column(length = 80)
-	private String funcao;
-
-	@Column(length = 80)
-	private String email;
+	private String telefone;
 
 	private Sexo sexo;
 	
@@ -46,20 +42,12 @@ public class Cliente extends DefaultEntity implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getFuncao() {
-		return funcao;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public PessoaFisica getPessoaFisica() {

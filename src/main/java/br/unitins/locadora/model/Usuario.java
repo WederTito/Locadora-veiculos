@@ -26,7 +26,7 @@ public class Usuario extends DefaultEntity implements Serializable {
 	@Column(length = 80)
 	private String login;
 
-	@Column(length = 60)
+	@Column(length = 256)
 	private String senha;
 
 	private Sexo sexo;
