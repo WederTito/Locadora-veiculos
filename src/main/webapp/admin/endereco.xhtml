@@ -5,44 +5,62 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-<ui:composition template="template.xhtml">
+<ui:composition template="/template.xhtml">
 <ui:define name="conteudo">
 
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Cidade" style="width:500px;">
+			<p:panel header="Cadastro de Endereco" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Nome: " />
+						<p:outputLabel value="Nome da Rua: " />
 						<h:panelGroup>
 						    <div class="p-col-12 p-md-4">
 				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{cidadeController.entity.nome}" />
+				                    <p:inputText value="#{enderecoController.entity.nome}" />
 				                    <p:commandButton icon="pi pi-search" 
 				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{cidadeController.abrirCidadeListing}">
+				                    	actionListener="#{enderecoController.abrirEnderecoListing}">
 				                    	<p:ajax 
 				                    		event="dialogReturn" 
-				                    		listener="#{cidadeController.obterCidadeListing}" 
+				                    		listener="#{enderecoController.obterEnderecoListing}" 
 				                    		update="@form"/>
 				                    </p:commandButton>
 				                </div>
 				            </div>
 						</h:panelGroup>
 						
-						<p:outputLabel value="Estado: " />
-						<p:autoComplete 
-		                	value="#{cidadeController.entity.estado}"
-		                	var="estado"
-		                	itemLabel="#{estado.nome}"
-		                	itemValue="#{estado}"
-		                    completeMethod="#{cidadeController.completeEstado}" 
-		                    forceSelection="true"
-		                    maxResults="3"
-		                    dropdown="true"
-		                    moreText="... mais resultados"
-		                    scrollHeight="250"/>
+						<p:outputLabel value="CEP: " />
+						<p:inputText value="#{enderecoController.entity.cep}" />
+						
+						<p:outputLabel value="Cidade: " />
+						<h:panelGroup>
+						    <div class="p-col-12 p-md-4">
+				                <div class="ui-inputgroup">
+				                    <p:inputText value="#{enderecoController.entity.cidade.nome}" />
+				                    <p:commandButton icon="pi pi-search" 
+				                    	styleClass="ui-button-warning"
+				                    	actionListener="#{enderecoController.abrirCidadeListing}">
+				                    	<p:ajax 
+				                    		event="dialogReturn" 
+				                    		listener="#{enderecoController.obterCidadeListing}" 
+				                    		update="@form"/>
+				                    </p:commandButton>
+				                </div>
+				            </div>
+						</h:panelGroup>
+						
+						<p:outputLabel value="Bairro: " />
+						<p:inputText value="#{enderecoController.entity.bairro}" />
+						
+						<p:outputLabel value="numero: " />
+						<p:inputText value="#{enderecoController.entity.numero}" />
+						
+						<p:outputLabel value="Complemento: " />
+						<p:inputText value="#{enderecoController.entity.complemento}" />
+						
+						
 						
 					</h:panelGrid>
 				</div>
@@ -51,26 +69,26 @@
 						<p:commandButton 
 							value="Incluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{cidadeController.incluir}"
+							actionListener="#{enderecoController.incluir}"
 							update="@form"
 							process="@form"
-							disabled="#{cidadeController.entity.id != null}"
+							disabled="#{enderecoController.entity.id != null}"
 							/>
 						<p:commandButton 
 							value="Alterar" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{cidadeController.alterar}"
+							actionListener="#{enderecoController.alterar}"
 							update="@form"
 							process="@form"
-							disabled="#{cidadeController.entity.id == null}"
+							disabled="#{enderecoController.entity.id == null}"
 							/>
 						<p:commandButton 
 							value="Excluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{cidadeController.excluir}"
+							actionListener="#{enderecoController.excluir}"
 							process="@this"
 							update="@form"
-							disabled="#{cidadeController.entity.id == null}">
+							disabled="#{enderecoController.entity.id == null}">
 							<p:confirm 
 								header="Confirmação" 
 								message="Deseja realmente excluir?" 
@@ -79,7 +97,7 @@
 						<p:commandButton 
 							value="Limpar" 
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{cidadeController.limpar}"
+							actionListener="#{enderecoController.limpar}"
 							update="@form"
 							process="@this"/>
 					</center>

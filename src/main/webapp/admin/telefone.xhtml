@@ -5,33 +5,33 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-<ui:composition template="template.xhtml">
+<ui:composition template="/template.xhtml">
 <ui:define name="conteudo">
-
+	
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Estado" style="width:500px;">
+			<p:panel header="Cadastro de Telefone" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Nome: " />
+						<p:outputLabel value="Codigo de Area: " />
 						<h:panelGroup>
 							<div class="p-col-12 p-md-4">
 								<div class="ui-inputgroup">
-									<p:inputText value="#{estadoController.entity.nome}" />
+									<p:inputText value="#{telefoneController.entity.nome}" />
 									<p:commandButton icon="pi pi-search"
 										styleClass="ui-button-warning"
-										actionListener="#{estadoController.abrirEstadoListing}">
+										actionListener="#{telefoneController.abrirTelefoneListing}">
 										<p:ajax event="dialogReturn"
-											listener="#{estadoController.obterEstadoListing}"
+											listener="#{telefoneController.obterTelefoneListing}"
 											update="@form" />
 									</p:commandButton>
 								</div>
 							</div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Sigla: " />
-						<p:inputText value="#{estadoController.entity.sigla}" />
+						<p:outputLabel value="Numero: " />
+						<p:inputText value="#{telefoneController.entity.numero}" />
 
 					</h:panelGrid>
 				</div>
@@ -39,23 +39,23 @@
 					<center>
 						<p:commandButton value="Incluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{estadoController.incluir}" update="@form"
-							process="@form" disabled="#{estadoController.entity.id != null}" />
+							actionListener="#{telefoneController.incluir}" update="@form"
+							process="@form" disabled="#{telefoneController.entity.id != null}" />
 						<p:commandButton value="Alterar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{estadoController.alterar}" update="@form"
-							process="@form" disabled="#{estadoController.entity.id == null}" />
+							actionListener="#{telefoneController.alterar}" update="@form"
+							process="@form" disabled="#{telefoneController.entity.id == null}" />
 						<p:commandButton value="Excluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{estadoController.excluir}" process="@this"
-							update="@form" disabled="#{estadoController.entity.id == null}">
+							actionListener="#{telefoneController.excluir}" process="@this"
+							update="@form" disabled="#{telefoneController.entity.id == null}">
 							<p:confirm header="Confirmação"
 								message="Deseja realmente excluir?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 						<p:commandButton value="Limpar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{estadoController.limpar}" update="@form"
+							actionListener="#{telefoneController.limpar}" update="@form"
 							process="@this" />
 					</center>
 				</f:facet>

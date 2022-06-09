@@ -5,62 +5,73 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-<ui:composition template="template.xhtml">
+<ui:composition template="/template.xhtml">
 <ui:define name="conteudo">
 
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Endereco" style="width:500px;">
+			<p:panel header="Cadastro de Usuário" style="width:500px;">
 				<div class="p-grid ui-fluid">
+				
+				<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+					     style="max-width: 80px!important;max-height: 80px!important;"            
+					     src="img-usuario?nome=#{usuarioController.entity.id}.png"/>
+					</div>				
+				
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Nome da Rua: " />
+						<p:outputLabel value="Nome: " />
 						<h:panelGroup>
 						    <div class="p-col-12 p-md-4">
 				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{enderecoController.entity.nome}" />
+				                    <p:inputText value="#{usuarioController.entity.pessoaFisica.nome}" />
 				                    <p:commandButton icon="pi pi-search" 
 				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{enderecoController.abrirEnderecoListing}">
+				                    	actionListener="#{usuarioController.abrirPessoaFisicaListing}">
 				                    	<p:ajax 
 				                    		event="dialogReturn" 
-				                    		listener="#{enderecoController.obterEnderecoListing}" 
+				                    		listener="#{usuarioController.obterPessoaFisicaListing}" 
 				                    		update="@form"/>
 				                    </p:commandButton>
 				                </div>
 				            </div>
 						</h:panelGroup>
+
+						<h:outputLabel value="Sexo: " />
+						<h:selectOneRadio value="#{usuarioController.entity.sexo}">
+							<f:selectItems value="#{usuarioController.listaSexo}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneRadio>
+
+						<p:outputLabel value="Função: " />
+						<h:selectOneRadio value="#{usuarioController.entity.funcao}">
+							<f:selectItems value="#{usuarioController.listaFuncao}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneRadio>
+
+						<p:outputLabel value="Login: " />
+						<p:inputText value="#{usuarioController.entity.login}" />
+
+						<p:outputLabel value="Senha: " />
+						<p:password value="#{usuarioController.entity.senha}" />
 						
-						<p:outputLabel value="CEP: " />
-						<p:inputText value="#{enderecoController.entity.cep}" />
+						<p:outputLabel value="Confimar Senha" />
+					<p:inputText value="#{usuarioController.confirmarSenha}"
+						type="password">
+					</p:inputText>
 						
-						<p:outputLabel value="Cidade: " />
-						<h:panelGroup>
-						    <div class="p-col-12 p-md-4">
-				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{enderecoController.entity.cidade.nome}" />
-				                    <p:commandButton icon="pi pi-search" 
-				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{enderecoController.abrirCidadeListing}">
-				                    	<p:ajax 
-				                    		event="dialogReturn" 
-				                    		listener="#{enderecoController.obterCidadeListing}" 
-				                    		update="@form"/>
-				                    </p:commandButton>
-				                </div>
-				            </div>
-						</h:panelGroup>
-						
-						<p:outputLabel value="Bairro: " />
-						<p:inputText value="#{enderecoController.entity.bairro}" />
-						
-						<p:outputLabel value="numero: " />
-						<p:inputText value="#{enderecoController.entity.numero}" />
-						
-						<p:outputLabel value="Complemento: " />
-						<p:inputText value="#{enderecoController.entity.complemento}" />
-						
-						
+						<p:outputLabel value="Imagem:"/>
+						<h:form enctype="multipart/form-data" > 
+							<p:fileUpload id="fileUpload"
+										  listener="#{usuarioController.upload}" 
+										  mode="advanced" 
+										  update="fileUpload @form"
+										  label="Selecione uma foto ..."
+										  global="false">
+							</p:fileUpload>
+					     	<p:growl id="messages" showDetail="true"/>    
+						</h:form>
 						
 					</h:panelGrid>
 				</div>
@@ -69,26 +80,26 @@
 						<p:commandButton 
 							value="Incluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{enderecoController.incluir}"
+							actionListener="#{usuarioController.incluir}"
 							update="@form"
 							process="@form"
-							disabled="#{enderecoController.entity.id != null}"
+							disabled="#{usuarioController.entity.id != null}"
 							/>
 						<p:commandButton 
 							value="Alterar" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{enderecoController.alterar}"
+							actionListener="#{usuarioController.alterar}"
 							update="@form"
 							process="@form"
-							disabled="#{enderecoController.entity.id == null}"
+							disabled="#{usuarioController.entity.id == null}"
 							/>
 						<p:commandButton 
 							value="Excluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{enderecoController.excluir}"
+							actionListener="#{usuarioController.excluir}"
 							process="@this"
 							update="@form"
-							disabled="#{enderecoController.entity.id == null}">
+							disabled="#{usuarioController.entity.id == null}">
 							<p:confirm 
 								header="Confirmação" 
 								message="Deseja realmente excluir?" 
@@ -97,7 +108,7 @@
 						<p:commandButton 
 							value="Limpar" 
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{enderecoController.limpar}"
+							actionListener="#{usuarioController.limpar}"
 							update="@form"
 							process="@this"/>
 					</center>
@@ -119,6 +130,7 @@
        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
     </p:confirmDialog>
+
 </ui:define>
 </ui:composition>
 </html>

@@ -5,57 +5,65 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-<ui:composition template="template.xhtml">
+<ui:composition template="/template.xhtml">
 <ui:define name="conteudo">
-	
+
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Telefone" style="width:500px;">
+			<p:panel header="Cadastro de Cliente" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Codigo de Area: " />
+						<p:outputLabel value="Nome: " />
 						<h:panelGroup>
-							<div class="p-col-12 p-md-4">
-								<div class="ui-inputgroup">
-									<p:inputText value="#{telefoneController.entity.nome}" />
-									<p:commandButton icon="pi pi-search"
-										styleClass="ui-button-warning"
-										actionListener="#{telefoneController.abrirTelefoneListing}">
-										<p:ajax event="dialogReturn"
-											listener="#{telefoneController.obterTelefoneListing}"
-											update="@form" />
-									</p:commandButton>
-								</div>
-							</div>
+						    <div class="p-col-12 p-md-4">
+				                <div class="ui-inputgroup">
+				                    <p:inputText value="#{clienteController.entity.pessoaFisica.nome}" />
+				                    <p:commandButton icon="pi pi-search" 
+				                    	styleClass="ui-button-warning"
+				                    	actionListener="#{clienteController.abrirPessoaFisicaListing}">
+				                    	<p:ajax 
+				                    		event="dialogReturn" 
+				                    		listener="#{clienteController.obterPessoaFisicaListing}" 
+				                    		update="@form"/>
+				                    </p:commandButton>
+				                </div>
+				            </div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Numero: " />
-						<p:inputText value="#{telefoneController.entity.numero}" />
 
+						<h:outputLabel value="Sexo: " />
+						<h:selectOneRadio value="#{clienteController.entity.sexo}">
+							<f:selectItems value="#{clienteController.listaSexo}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneRadio>
+
+						<p:outputLabel value="Telefone: " />
+						<p:inputText value="#{clienteController.entity.telefone}" />
+						
 					</h:panelGrid>
 				</div>
 				<f:facet name="footer">
 					<center>
 						<p:commandButton value="Incluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.incluir}" update="@form"
-							process="@form" disabled="#{telefoneController.entity.id != null}" />
+							actionListener="#{clienteController.incluir}" update="@form"
+							process="@form" disabled="#{clienteController.entity.id != null}" />
 						<p:commandButton value="Alterar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.alterar}" update="@form"
-							process="@form" disabled="#{telefoneController.entity.id == null}" />
+							actionListener="#{clienteController.alterar}" update="@form"
+							process="@form" disabled="#{clienteController.entity.id == null}" />
 						<p:commandButton value="Excluir"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.excluir}" process="@this"
-							update="@form" disabled="#{telefoneController.entity.id == null}">
+							actionListener="#{clienteController.excluir}" process="@this"
+							update="@form" disabled="#{clienteController.entity.id == null}">
 							<p:confirm header="Confirmação"
 								message="Deseja realmente excluir?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 						<p:commandButton value="Limpar"
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{telefoneController.limpar}" update="@form"
+							actionListener="#{clienteController.limpar}" update="@form"
 							process="@this" />
 					</center>
 				</f:facet>

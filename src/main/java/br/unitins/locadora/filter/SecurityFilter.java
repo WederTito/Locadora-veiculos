@@ -15,48 +15,44 @@ import javax.servlet.http.HttpSession;
 
 import br.unitins.locadora.model.Usuario;
 
-//@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/pages/*"})
+@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/faces/admin/*"} )
 public class SecurityFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		// deixando o fluxo seguir
-		// Para desabilitar o filtro descomente as duas proximas linhas e comente o restante
-//		chain.doFilter(request, response);
-//		return;
-		
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		String endereco = servletRequest.getRequestURI();
+		System.out.println(servletRequest.getServerName());
+		System.out.println(servletRequest.getServletPath());
+		System.out.println(servletRequest.getServletContext());
+		
 		System.out.println(endereco);
 		
-		// retorna uma sessao corrente (false - nao cria uma sessao)
-		HttpSession session = servletRequest.getSession(false);
-		
-		Usuario usuario = null;
-		
+		// retorna uma sessao corrente (false - nao cria uma nova estrutura de sessao)
+		HttpSession session =  servletRequest.getSession(false);
+		Usuario usuarioLogado = null;
 		if (session != null)
-			usuario = (Usuario) session.getAttribute("usuarioLogado");
+			usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		
-		if (usuario == null) {
-			((HttpServletResponse) response).sendRedirect("/Locadora/login.xhtml");
+		// se nao estiver logado, redirecionar para a pagina de login
+		if (usuarioLogado == null) {
+			((HttpServletResponse)response).sendRedirect("/Locadora/faces/login2.xhtml");
 		} else {
-			
-			if (usuario.getFuncao().getPaginasComPermissao().contains(endereco)) {
+			if (usuarioLogado.getFuncao().getPaginasComPermissao().contains(endereco)) {
 				chain.doFilter(request, response);
-				return;
-			} else 
-				((HttpServletResponse) response).sendRedirect("/locadora/sempermissao.xhtml");
+			} else {
+				((HttpServletResponse)response).sendRedirect("/Locadora/faces/semacesso.xhtml");
+			}
 		}
 		
 	}
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("Security inicializado ...");
-		
 		Filter.super.init(filterConfig);
+		System.out.println("SecurityFilter iniciailzado.");
 	}
 
 }

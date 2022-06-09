@@ -1,6 +1,7 @@
 package br.unitins.locadora.controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import br.unitins.locadora.application.RepositoryException;
@@ -24,19 +25,17 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		if (usuarioLogado != null) {
-			//Adicionar na sessao o objeto usuarioLogado
-//			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-//			context.getSessionMap().put("usuarioLogado", usuarioLogado);
-			Session.getInstance().set("usuarioLogado", usuarioLogado);
+			FacesContext.getCurrentInstance()
+			.getExternalContext()
+			.getSessionMap()
+			.put("usuarioLogado", usuarioLogado);
 			
-			// redirecionando para o template
-			Util.redirect("usuario.xhtml");
-			
+			Util.redirect("template.xhtml");
 		}
 		Util.addErrorMessage("Login ou senha inválido.");
-		
+
 	}
-	
+
 	public void limpar() {
 		usuario = null;
 	}

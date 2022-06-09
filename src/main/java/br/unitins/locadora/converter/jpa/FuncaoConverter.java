@@ -6,11 +6,11 @@ import javax.persistence.Converter;
 import br.unitins.locadora.model.Funcao;
 
 @Converter(autoApply = true)
-public class FuncaoConverter implements AttributeConverter<Funcao, Integer> {
+public class FuncaoConverter implements AttributeConverter<Funcao, Integer>{
 
 	@Override
-	public Integer convertToDatabaseColumn(Funcao perfil) {
-		return perfil == null ? null : perfil.getId();
+	public Integer convertToDatabaseColumn(Funcao funcao) {
+		return funcao == null ? null : funcao.getId();
 	}
 
 	@Override
