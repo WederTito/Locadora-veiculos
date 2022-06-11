@@ -6,7 +6,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.unitins.locadora.application.RepositoryException;
+import br.unitins.locadora.model.Carro;
 import br.unitins.locadora.model.Cliente;
+import br.unitins.locadora.model.Estado;
 
 public class ClienteRepository extends Repository<Cliente>{
 	
@@ -22,7 +24,7 @@ public class ClienteRepository extends Repository<Cliente>{
 			
 			Query query = getEntityManager().createQuery(jpql.toString());
 			query.setParameter("nome", "%" + nome + "%");
-			
+				
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,4 +78,5 @@ public class ClienteRepository extends Repository<Cliente>{
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}		
 	}
+
 }

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import br.unitins.locadora.model.Usuario;
 
-@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/faces/admin/*"} )
+//@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/faces/admin/*"} )
 public class SecurityFilter implements Filter {
 
 	@Override

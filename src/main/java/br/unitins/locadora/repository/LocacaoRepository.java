@@ -5,18 +5,18 @@ import java.util.List;
 import javax.persistence.Query;
 
 import br.unitins.locadora.application.RepositoryException;
-import br.unitins.locadora.model.Telefone;
+import br.unitins.locadora.model.Locacao;
 
-public class TelefoneRepository extends Repository<Telefone>{
-	public List<Telefone> findByNome(String nome) throws RepositoryException {
+public class LocacaoRepository extends Repository<Locacao>{
+	public List<Locacao> findByNome(String nome) throws RepositoryException {
 		try { 
 			StringBuffer jpql = new StringBuffer();
 			jpql.append("SELECT ");
-			jpql.append("  t ");
+			jpql.append("  l ");
 			jpql.append("FROM ");
-			jpql.append("  Telefone t ");
+			jpql.append("  Locacao l ");
 			jpql.append("WHERE ");
-			jpql.append("  t.nome LIKE :nome ");
+			jpql.append("  l.nome LIKE :nome ");
 			
 			Query query = getEntityManager().createQuery(jpql.toString());
 			query.setParameter("nome", "%" + nome + "%");

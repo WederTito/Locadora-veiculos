@@ -10,11 +10,11 @@ public class Carro extends DefaultEntity implements Serializable {
 	
 	private static final long serialVersionUID = -7157398933971531440L;
 	
-	String nome;
-	String cor;
-	String chassi;
-	String placa;
-	String obs;
+	private String nome;
+	private String cor;
+	private String chassi;
+	private String placa;
+	private String obs;
 	
 	@ManyToOne
 	private Fabricante fabricante;

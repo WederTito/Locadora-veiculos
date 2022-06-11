@@ -5,11 +5,12 @@ import java.util.List;
 import javax.persistence.Query;
 
 import br.unitins.locadora.application.RepositoryException;
+import br.unitins.locadora.model.Cliente;
 import br.unitins.locadora.model.PessoaFisica;
 
 public class PessoaFisicaRepository extends Repository<PessoaFisica>{
 	
-	public List<PessoaFisica> findByNome(String nome) throws RepositoryException {
+	public List<PessoaFisica> findByNome(String nome, Integer maxResults) throws RepositoryException {
 		try { 
 			StringBuffer jpql = new StringBuffer();
 			jpql.append("SELECT ");
@@ -22,10 +23,16 @@ public class PessoaFisicaRepository extends Repository<PessoaFisica>{
 			Query query = getEntityManager().createQuery(jpql.toString());
 			query.setParameter("nome", "%" + nome + "%");
 			
+			if (maxResults != null)
+				query.setMaxResults(maxResults);
+			
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}
+	}
+	public List<PessoaFisica> findByNome(String nome) throws RepositoryException {
+		return findByNome(nome, null);
 	}
 }

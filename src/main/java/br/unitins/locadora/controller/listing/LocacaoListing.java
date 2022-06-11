@@ -5,23 +5,23 @@ import javax.inject.Named;
 
 import br.unitins.locadora.application.RepositoryException;
 import br.unitins.locadora.application.Util;
-import br.unitins.locadora.repository.TelefoneRepository;
-import br.unitins.locadora.model.Telefone;
+import br.unitins.locadora.repository.LocacaoRepository;
+import br.unitins.locadora.model.Locacao;
 
 @Named
 @ViewScoped
-public class TelefoneListing extends Listing<Telefone>{
+public class LocacaoListing extends Listing<Locacao>{
 
 	private static final long serialVersionUID = 7261856882071066690L;
 	private String filtro;
 	
-	public TelefoneListing() {
-		super("telefonelisting", new TelefoneRepository());
+	public LocacaoListing() {
+		super("locacaolisting", new LocacaoRepository());
 	}
 
 	@Override
 	public void pesquisar() {
-		TelefoneRepository repo = new TelefoneRepository();
+		LocacaoRepository repo = new LocacaoRepository();
 		try {
 			setList(repo.findByNome(filtro));
 		} catch (RepositoryException e) {

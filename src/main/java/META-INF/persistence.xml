@@ -7,7 +7,7 @@
 		<class>br.unitins.locadora.model.Cidade</class>
 		<class>br.unitins.locadora.model.DefaultEntity</class>
 		<class>br.unitins.locadora.model.Estado</class>
-		<class>br.unitins.locadora.model.Telefone</class>
+		<class>br.unitins.locadora.model.Locacao</class>
 		<class>br.unitins.locadora.model.Usuario</class>
 		<class>br.unitins.locadora.model.Cliente</class>
 		<class>br.unitins.locadora.model.Carro</class>

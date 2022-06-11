@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+<ui:composition template="/template.xhtml">
+<ui:define name="conteudo">
+	
+	<h:form>
+		<p:growl id="growl" showDetail="true" />
+		<center>
+			<p:panel header="Locacao" style="width:500px;">
+				<div class="p-grid ui-fluid">
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Nome do Responsável: " />
+						<h:panelGroup>
+							<div class="p-col-12 p-md-4">
+								<div class="ui-inputgroup">
+									<p:inputText value="#{locacaoController.entity.nome}" />
+									<p:commandButton icon="pi pi-search"
+										styleClass="ui-button-warning"
+										actionListener="#{locacaoController.abrirLocacaoListing}">
+										<p:ajax event="dialogReturn"
+											listener="#{locacaoController.obterLocacaoListing}"
+											update="@form" />
+									</p:commandButton>
+								</div>
+							</div>
+						</h:panelGroup>
+
+						<p:outputLabel value="Valor: " />
+						<p:inputText value="#{locacaoController.entity.valor}" />
+						
+						<p:outputLabel value="Data inicio: " />
+						<p:inputMask value="#{locacaoController.entity.inicio}"
+						mask="99-99-99">
+						</p:inputMask>
+						
+						<p:outputLabel value="Data Fim: " />
+						<p:inputMask value="#{locacaoController.entity.fim}"
+						mask="99-99-99">
+						</p:inputMask>
+						
+						<p:outputLabel value="Carro: " />
+						<p:autoComplete 
+		                	value="#{locacaoController.entity.carro}"
+		                	var="carro"
+		                	itemLabel="#{carro.nome}"
+		                	itemValue="#{carro}"
+		                    completeMethod="#{locacaoController.completeCarro}" 
+		                    forceSelection="true"
+		                    maxResults="3"
+		                    dropdown="true"
+		                    moreText="... mais resultados"
+		                    scrollHeight="250"/>
+		                    
+		                    <p:outputLabel value="Cliente: " />
+						<p:autoComplete 
+		                	value="#{locacaoController.entity.pessoaFisica}"
+		                	var="Pessoafisica"
+		                	itemLabel="#{Pessoafisica.nome}"
+		                	itemValue="#{Pessoafisica}"
+		                    completeMethod="#{locacaoController.completePessoaFisica}" 
+		                    forceSelection="true"
+		                    maxResults="3"
+		                    dropdown="true"
+		                    moreText="... mais resultados"
+		                    scrollHeight="250"/>
+						
+					</h:panelGrid>
+				</div>
+				<f:facet name="footer">
+					<center>
+						<p:commandButton value="Incluir"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{locacaoController.incluir}" update="@form"
+							process="@form" disabled="#{locacaoController.entity.id != null}" />
+						<p:commandButton value="Alterar"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{locacaoController.alterar}" update="@form"
+							process="@form" disabled="#{locacaoController.entity.id == null}" />
+						<p:commandButton value="Excluir"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{locacaoController.excluir}" process="@this"
+							update="@form" disabled="#{locacaoController.entity.id == null}">
+							<p:confirm header="Confirmação"
+								message="Deseja realmente excluir?"
+								icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+						<p:commandButton value="Limpar"
+							style="margin-left:10px;margin-right:10px;"
+							actionListener="#{locacaoController.limpar}" update="@form"
+							process="@this" />
+					</center>
+				</f:facet>
+			</p:panel>
+		</center>
+	</h:form>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<div class="p-text-center">
+			<p:graphicImage height="150px" width="200px"
+				value="./resources/images/loading.gif" />
+		</div>
+	</p:dialog>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+</ui:define>
+</ui:composition>
+</html>
