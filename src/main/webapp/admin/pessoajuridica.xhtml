@@ -32,7 +32,9 @@
 						</h:panelGroup>
 						
 						<p:outputLabel value="CNPJ: " />
-						<p:inputText value="#{pessoaJuridicaController.entity.cnpj}" />
+						<p:inputMask value="#{pessoaJuridicaController.entity.cnpj}"
+						mask="99.999.999/00001-99">
+						</p:inputMask>
 						
 						<p:outputLabel value="CNH: " />
 						<p:inputText value="#{pessoaJuridicaController.entity.cnh}" />

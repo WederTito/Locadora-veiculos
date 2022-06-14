@@ -34,10 +34,17 @@
 						<p:inputText value="#{fabricanteController.entity.sigla}" />
 						
 						<p:outputLabel value="Categoria: " />
-						<p:inputText value="#{fabricanteController.entity.categoria}" />
-						
-						<p:outputLabel value="Valor: " />
-						<p:inputText value="#{fabricanteController.entity.valor}" />
+						<p:autoComplete 
+		                	value="#{fabricanteController.entity.categoria}"
+		                	var="categoria"
+		                	itemLabel="#{categoria.nome}"
+		                	itemValue="#{categoria}"
+		                    completeMethod="#{fabricanteController.completeCategoria}" 
+		                    forceSelection="true"
+		                    maxResults="3"
+		                    dropdown="true"
+		                    moreText="... mais resultados"
+		                    scrollHeight="250"/>
 						
 					</h:panelGrid>
 				</div>

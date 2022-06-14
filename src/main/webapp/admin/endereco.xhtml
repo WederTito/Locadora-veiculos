@@ -32,7 +32,9 @@
 						</h:panelGroup>
 						
 						<p:outputLabel value="CEP: " />
-						<p:inputText value="#{enderecoController.entity.cep}" />
+						<p:inputMask value="#{enderecoController.entity.cep}"
+						mask="99999-999">
+						</p:inputMask>
 						
 						<p:outputLabel value="Cidade: " />
 						<h:panelGroup>

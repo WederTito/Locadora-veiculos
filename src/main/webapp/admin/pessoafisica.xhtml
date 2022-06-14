@@ -32,7 +32,9 @@
 						</h:panelGroup>
 						
 						<p:outputLabel value="CPF: " />
-						<p:inputText value="#{pessoaFisicaController.entity.cpf}" />
+						<p:inputMask value="#{pessoaFisicaController.entity.cpf}"
+						mask="999.999.999-99">
+						</p:inputMask>
 						
 						<p:outputLabel value="CNH: " />
 						<p:inputText value="#{pessoaFisicaController.entity.cnh}" />
