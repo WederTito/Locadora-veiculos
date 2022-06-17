@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
 <ui:composition template="/template.xhtml">
-<ui:define name="conteudo">
+<ui:define name="content">
 
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
@@ -33,7 +33,7 @@
 						
 						<p:outputLabel value="CNPJ: " />
 						<p:inputMask value="#{pessoaJuridicaController.entity.cnpj}"
-						mask="99.999.999/00001-99">
+						mask="99.999.999/0001-99">
 						</p:inputMask>
 						
 						<p:outputLabel value="CNH: " />

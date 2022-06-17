@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="wrapper">
+		<div class="box navbar header">
+			<h1>Raiders - Locadora de Carros</h1>
+			<div>
+				<h:form rendered="#{templateController.usuarioLogado != null}">
+					<h:outputLabel value="Olá Jovem! #{templateController.usuarioLogado.nome}" />
+					
+					<p:commandButton value="Sair"
+						action="#{templateController.encerrarSessao}" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<div class="card" style="margin: 10px 10px;">
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+
+				<p:submenu label="Locação" icon="pi pi-fw pi-pencil">
+					<p:menuitem value="Historico" outcome="/faces/locacaolisting.xhtml"
+						icon="pi pi-fw pi-pencil" />
+				</p:submenu>
+
+				<p:submenu label="Gerenciamento de Carro" icon="pi pi-fw pi-pencil">
+					<p:menuitem value="Categoria"
+						outcome="/faces/admin/categoria.xhtml" icon="pi pi-fw pi-pencil" />
+					<p:menuitem value="Carro" outcome="/faces/carro.xhtml"
+						icon="pi pi-fw pi-pencil" />
+					<p:menuitem value="Fabricante" outcome="/faces/fabricante.xhtml"
+						icon="pi pi-fw pi-pencil" />
+				</p:submenu>
+
+				<p:submenu label="Gerenciamento de Usuário" icon="pi pi-fw pi-user">
+					<p:menuitem value="Usuário" outcome="/faces/admin/usuario.xhtml"
+						icon="pi pi-fw pi-user-plus" />
+					<p:menuitem value="Cliente" outcome="/faces/admin/cliente.xhtml"
+						icon="pi pi-fw pi-user-plus" />
+					<p:menuitem value="Pessoa Fisica"
+						outcome="/faces/admin/pessoafisica.xhtml"
+						icon="pi pi-fw pi-user-plus" />
+					<p:menuitem value="Pessoa Juridica"
+						outcome="/faces/admin/pessoajuridica.xhtml"
+						icon="pi pi-fw pi-user-plus" />
+				</p:submenu>
+
+				<p:submenu label="Gerenciamento de Endereço"
+					icon="pi pi-fw pi-calendar">
+					<p:menuitem value="Endereço" outcome="/faces/admin/endereco.xhtml"
+						icon="pi pi-fw pi-pencil" />
+					<p:menuitem value="Estado" outcome="/faces/admin/estado.xhtml"
+						icon="pi pi-fw pi-pencil" />
+					<p:menuitem value="Cidade" outcome="/faces/admin/cidade.xhtml"
+						icon="pi pi-fw pi-pencil" />
+				</p:submenu>
+			</p:menubar>
+		</h:form>
+	</div>
+
+</ui:composition>

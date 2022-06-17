@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
 <ui:composition template="/template.xhtml">
-<ui:define name="conteudo">
+<ui:define name="content">
 
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
@@ -37,9 +37,11 @@
 							<f:selectItems value="#{clienteController.listaSexo}" var="obj"
 								itemLabel="#{obj.label}" />
 						</h:selectOneRadio>
-
+						
 						<p:outputLabel value="Telefone: " />
-						<p:inputText value="#{clienteController.entity.telefone}" />
+						<p:inputMask value="#{clienteController.entity.telefone}"
+						mask="(99)99999-9999">
+						</p:inputMask>
 						
 					</h:panelGrid>
 				</div>

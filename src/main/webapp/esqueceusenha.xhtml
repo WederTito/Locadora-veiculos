@@ -23,9 +23,12 @@
 
 				<f:facet name="footer">
 					<center>
-						<h:commandButton value="Enviar"
+						<p:commandButton value="Enviar"
 							style="margin-left:10px;margin-right:10px;"
 							actionListener="#{esqueceuSenhaController.enviarEmail}" />
+							
+						<p:commandButton value="Login"
+								action="/faces/login2.xhtml?faces-redirect=true"/>
 					</center>
 				</f:facet>
 			</p:panel>

@@ -14,10 +14,12 @@ import br.unitins.locadora.controller.listing.CarroListing;
 import br.unitins.locadora.controller.listing.PessoaFisicaListing;
 import br.unitins.locadora.controller.listing.LocacaoListing;
 import br.unitins.locadora.model.Carro;
+import br.unitins.locadora.model.Funcao;
 import br.unitins.locadora.model.PessoaFisica;
 import br.unitins.locadora.model.PessoaFisica;
 import br.unitins.locadora.model.Carro;
 import br.unitins.locadora.model.Locacao;
+import br.unitins.locadora.model.Pagamento;
 import br.unitins.locadora.repository.CarroRepository;
 import br.unitins.locadora.repository.PessoaFisicaRepository;
 import br.unitins.locadora.repository.LocacaoRepository;
@@ -45,6 +47,10 @@ public class LocacaoController extends Controller<Locacao> implements Serializab
 	public void abrirLocacaoListing() {
 		LocacaoListing listing = new LocacaoListing();
 		listing.open();
+	}
+	
+	public Pagamento[] getListaPagamento() {
+		return Pagamento.values();
 	}
 
 	public void obterLocacaoListing(SelectEvent<Locacao> event) {

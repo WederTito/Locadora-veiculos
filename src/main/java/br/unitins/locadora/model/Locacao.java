@@ -20,6 +20,16 @@ public class Locacao extends DefaultEntity {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(unique = true)
 	private PessoaFisica pessoaFisica;
+	
+	private Pagamento pagamento;
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
 
 	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;

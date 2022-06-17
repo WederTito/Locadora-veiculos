@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -24,9 +25,11 @@ public class Usuario extends DefaultEntity implements Serializable {
 	private Funcao funcao;
 
 	@Column(length = 80)
+	//@NotEmpty(message = "Campo login não pode estar vazio!")
 	private String login;
 
 	@Column(length = 256)
+	//@NotEmpty(message = "Campo senha não pode estar vazio!")
 	private String senha;
 
 	private Sexo sexo;

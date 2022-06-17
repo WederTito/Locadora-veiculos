@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.unitins.locadora.application.RepositoryException;
+import br.unitins.locadora.application.Util;
 import br.unitins.locadora.model.Usuario;
 
 public class UsuarioRepository extends Repository<Usuario>{
@@ -17,7 +18,7 @@ public class UsuarioRepository extends Repository<Usuario>{
 			//JPQL ou SQL
 			Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha");
 			query.setParameter("login", usuario.getLogin());
-			query.setParameter("senha", usuario.getSenha());
+			query.setParameter("senha", Util.hash(usuario.getSenha()));
 			
 			return  (Usuario) query.getSingleResult();
 		} catch (NoResultException e) {
@@ -99,8 +100,34 @@ public class UsuarioRepository extends Repository<Usuario>{
 		}		
 	}
 
-	public void adicionar(Usuario usu) {
-		// TODO Auto-generated method stub
+	public Usuario adicionar(Usuario usu) throws RepositoryException {
+	     try {
+	            usu.setSenha(Util.hash(usu.getSenha()));
+	            entityManager.getTransaction().begin();
+	            Usuario t = entityManager.merge(usu);
+	            entityManager.getTransaction().commit();
+	            return t;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new RepositoryException("Erro ao adicionar!");
+	        }
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+    public Usuario getUsuario(String login, String senha) {
+
+        Query query = getEntityManager().createQuery("Select " + "  u " + "From " + "  Usuario u " + "WHERE "
+                + "  u.login = :login AND " + "  u.senha = :senha ");
+
+        query.setParameter("login", login);
+        query.setParameter("senha", senha);
+
+        List<Usuario> lista = query.getResultList();
+
+        if (lista == null || lista.isEmpty())
+            return null;
+
+        return lista.get(0);
+    }
 }

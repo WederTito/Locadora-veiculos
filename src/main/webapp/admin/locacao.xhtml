@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
 <ui:composition template="/template.xhtml">
-<ui:define name="conteudo">
+<ui:define name="content">
 	
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
@@ -30,19 +30,6 @@
 							</div>
 						</h:panelGroup>
 
-						<p:outputLabel value="Valor: " />
-						<p:inputText value="#{locacaoController.entity.valor}" />
-						
-						<p:outputLabel value="Data inicio: " />
-						<p:inputMask value="#{locacaoController.entity.inicio}"
-						mask="99-99-99">
-						</p:inputMask>
-						
-						<p:outputLabel value="Data Fim: " />
-						<p:inputMask value="#{locacaoController.entity.fim}"
-						mask="99-99-99">
-						</p:inputMask>
-						
 						<p:outputLabel value="Carro: " />
 						<p:autoComplete 
 		                	value="#{locacaoController.entity.carro}"
@@ -69,11 +56,30 @@
 		                    moreText="... mais resultados"
 		                    scrollHeight="250"/>
 						
+						<p:outputLabel value="Data inicio: " />
+						<p:inputMask value="#{locacaoController.entity.inicio}"
+						mask="99-99-2022">
+						</p:inputMask>
+						
+						<p:outputLabel value="Data Fim: " />
+						<p:inputMask value="#{locacaoController.entity.fim}"
+						mask="99-99-2022">
+						</p:inputMask>
+
+						<p:outputLabel value="Valor: " />
+						<p:inputText value="#{locacaoController.entity.valor}" />
+		                    
+		                    <h:outputLabel value="Forma de pagamento: " />
+						<h:selectOneMenu value="#{locacaoController.entity.pagamento}">
+							<f:selectItems value="#{locacaoController.listaPagamento}" var="obj"
+								itemLabel="#{obj.label}" />
+						</h:selectOneMenu>
+						
 					</h:panelGrid>
 				</div>
 				<f:facet name="footer">
 					<center>
-						<p:commandButton value="Incluir"
+						<p:commandButton value="Salvar"
 							style="margin-left:10px;margin-right:10px;"
 							actionListener="#{locacaoController.incluir}" update="@form"
 							process="@form" disabled="#{locacaoController.entity.id != null}" />
@@ -81,18 +87,6 @@
 							style="margin-left:10px;margin-right:10px;"
 							actionListener="#{locacaoController.alterar}" update="@form"
 							process="@form" disabled="#{locacaoController.entity.id == null}" />
-						<p:commandButton value="Excluir"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{locacaoController.excluir}" process="@this"
-							update="@form" disabled="#{locacaoController.entity.id == null}">
-							<p:confirm header="Confirmação"
-								message="Deseja realmente excluir?"
-								icon="pi pi-exclamation-triangle" />
-						</p:commandButton>
-						<p:commandButton value="Limpar"
-							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{locacaoController.limpar}" update="@form"
-							process="@this" />
 					</center>
 				</f:facet>
 			</p:panel>

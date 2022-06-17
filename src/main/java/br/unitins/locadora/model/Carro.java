@@ -4,16 +4,22 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Carro extends DefaultEntity implements Serializable {
 	
 	private static final long serialVersionUID = -7157398933971531440L;
 	
+	//@NotEmpty(message = "Campo modelo não pode estar vazio!")
 	private String nome;
+	//@NotEmpty(message = "Campo cor não pode estar vazio!")
 	private String cor;
+	//@NotEmpty(message = "Campo chassi não pode estar vazio!")
 	private String chassi;
+	//@NotEmpty(message = "Campo placa não pode estar vazio!")
 	private String placa;
+	//@NotEmpty(message = "Campo obs não pode estar vazio!")
 	private String obs;
 	
 	@ManyToOne

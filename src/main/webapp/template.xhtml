@@ -1,58 +1,56 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" lang="en">
+
 <h:head>
-	<meta charset="utf-8" name="viewport"
-		content="width=device-width, initial-scale=1"
-		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="template.css"/>  
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+	<h:outputStylesheet name="primeicons/primeicons.css"
+		library="primefaces" />
+	<ui:insert name="head" />
 </h:head>
 
 <h:body>
-	 <div class="wrapper">
-	 	<div class="box navbar header">
-			<h1 >.: Locadora de Carros :.</h1>
-			<div >
-				<h:form rendered="#{templateController.usuarioLogado != null}"> 
-					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"/>
-					<h:commandLink value=" (Sair)"   
-						action="#{templateController.encerrarSessao}"
-						style="color:white"/>
-				</h:form>
-			</div>
-	 	</div>
-		<div class="box sidebar" style="text-align: center;">
-			<ui:insert name="menu">
-				<h2>Menu</h2>
-				<h:form>
-					<h:commandLink value="Login" action="/faces/login.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Usuario" action="/faces/admin/usuario.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Cliente" action="/faces/admin/cliente.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Carro" action="/faces/admin/carro.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Fabricante" action="/faces/admin/fabricante.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Pessoa Fisica" action="/faces/admin/pessoafisica.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Pessoa Juridica" action="/faces/admin/pessoajuridica.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Endereço" action="/faces/admin/endereco.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Cidade" action="/faces/admin/cidade.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Estado" action="/faces/admin/estado.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Locação" action="/faces/admin/locacao.xhtml?faces-redirect=true"/> <br/>
-					<h:commandLink value="Cadastro Categoria" action="/faces/admin/categoria.xhtml?faces-redirect=true"/> <br/>
-				</h:form>
-			</ui:insert>
+	<div class="layout-wrapper">
+		<ui:include src="topbar.xhtml" />
+
+		<div class="layout-content">
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage name="/images/processando.gif" />
+			</p:dialog>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no ui-button-flat" />
+			</p:confirmDialog>
+
+			<ui:insert name="content"></ui:insert>
 		</div>
-		<div class="box content">
-			<br/>
-			<ui:insert name="conteudo">
-				<div align="center">
-					<h1>TÓPICOS EM PROGRAMAÇÃO II</h1>
-				</div>
-			</ui:insert>
-		</div>
-		<div class="box footer" style="text-align: center;">
-			<h:outputText value="2022 - Weder C. Tito - Todos os direitos reservados." />
-		</div>
+
+		<ui:include src="footer.xhtml" />
 	</div>
+
+	<h:outputStylesheet name="layout/style/layout.css" />
+	<h:outputScript name="layout/script/layout.js" />
 </h:body>
+
 </html>

@@ -15,10 +15,13 @@ import br.unitins.locadora.repository.UsuarioRepository;
 public class LoginController {
 
 	private Usuario usuario;
+	private String login = "";
+	private String senha = "";
+	private UsuarioRepository  usuarioRepository;
 	
 	public void entrar() {
 		UsuarioRepository repo = new UsuarioRepository();
-		Usuario usuarioLogado = null;
+		Usuario usuarioLogado = repo.getUsuario(getUsuario().getLogin(), Util.hash(getUsuario().getSenha()));
 		try {
 			usuarioLogado = repo.validarLogin(getUsuario());
 		} catch (RepositoryException e) {
@@ -30,7 +33,7 @@ public class LoginController {
 			.getSessionMap()
 			.put("usuarioLogado", usuarioLogado);
 			
-			Util.redirect("template.xhtml");
+			Util.redirect("locacaolisting.xhtml");
 		}
 		Util.addErrorMessage("Login ou senha inválido.");
 
@@ -49,5 +52,33 @@ public class LoginController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public UsuarioRepository getUsuarioRepository() {
+		if(usuarioRepository == null) {
+			usuarioRepository = new UsuarioRepository();
+		}
+		return usuarioRepository;
+	}
+
+	public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
+	}
+	
 
 }

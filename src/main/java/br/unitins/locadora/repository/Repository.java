@@ -12,7 +12,7 @@ import br.unitins.locadora.model.DefaultEntity;
 
 public class Repository<T extends DefaultEntity> {
 
-	private static EntityManager entityManager;
+	protected static EntityManager entityManager;
 
 	public Repository() {
 		super();
